@@ -49,16 +49,24 @@
     </div>
     
     <div class="form form-signup">
-      <form action="#">
-        <lable>FULL NMAE</lable>
-        <input type="text" 
+      <form action="/users/register" method="POST" enctype="multipart/form-data">
+        <lable>FULL NAME</lable>
+        <input type="text"  namme="name"
                placeholder="Your full name">
         <lable>E-MAIL</lable>
-        <input type="email" 
+        <input type="email" name="email"
                placeholder="Your e-mail">
+        <lable>USER NAME</lable>
+        <input type="text"  namme="username"
+               placeholder="Your username">
         <lable>PASSWORD</lable>
-        <input type="password" 
+        <input type="password" name="password"
                placeholder="Your password">
+        <lable>CONFIRM PASSWORD</lable>  
+        <input type="password" name="password2"
+               placeholder="Confirm password">
+        <lable>PROFILE IMAGE</lable>
+        <input type="file" name="profileimage">
         <p class="terms">
           <input type="checkbox">
           I agree all statments in 
@@ -72,10 +80,10 @@
     </div>
 
     <div class="form form-signin">
-      <form action="#">
-        <lable>E-MAIL</lable>
-        <input type="email" 
-               placeholder="Your e-mail">
+      <form action="/users/login" method="POST">
+        <lable>USERNAME</lable>
+        <input type="text"  name="username"
+               placeholder="Your username">
         <lable>PASSWORD</lable>
         <input type="password" 
                placeholder="Your password">
