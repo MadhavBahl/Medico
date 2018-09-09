@@ -16,9 +16,11 @@ var mongoose = require('mongoose');
 
 var db = mongoose.connection;
 
-var indexRouter = require('./routes/index');
-var chatRouter  = require('./routes/chat');
-var usersRouter = require('./routes/users');
+var indexRouter  = require('./routes/index');
+var chatRouter   = require('./routes/chat');
+var medbotRouter = require('./routes/medbot');
+var imageRouter  = require('./routes/image');
+var usersRouter  = require('./routes/users');
 
 var app = express();
 
@@ -68,13 +70,15 @@ app.use(function (req, res, next) {
 	next();
 });
 
-app.get('*', (req, res, next) => {
-	res.locals.user = req.user || null;
-	next();
-});
+// app.get('*', (req, res, next) => {
+// 	res.locals.user = req.user || null;
+// 	next();
+// });
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/chat', chatRouter);
+app.use('/image', imageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
