@@ -17,6 +17,7 @@ var mongoose = require('mongoose');
 var db = mongoose.connection;
 
 var indexRouter = require('./routes/index');
+var chatRouter  = require('./routes/chat');
 var usersRouter = require('./routes/users');
 
 var app = express();
