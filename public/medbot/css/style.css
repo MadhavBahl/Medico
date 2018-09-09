@@ -218,3 +218,7 @@ body {
   margin-top: 5px;
   width: 88%;
 }
+
+.chat-history {
+  background: url("/medbot/img/bkg.png");
+}

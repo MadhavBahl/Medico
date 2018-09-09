@@ -1,11 +1,11 @@
 (function(){
 
   console.log('Welcome!');
-  
+  var resultMsg = 'Start Message';
   var chat = {
     messageToSend: '',
     messageResponses: [
-      'Why did the web developer leave the restaurant? Because of the table layout.'
+      'Good Morning Sir, I hope you are having a good day :)'
     ],
     init: function() {
       this.cacheDOM();
@@ -52,13 +52,47 @@
     },
     
     addMessage: function() {
-      this.messageToSend = this.$textarea.val()
+      this.messageToSend = this.$textarea.val();
+      this.messageResponses = [resultMsg]
       this.render();         
     },
     addMessageEnter: function(event) {
         // enter was pressed
         if (event.keyCode === 13) {
-          this.addMessage();
+          var baseUrl = "https://api.api.ai/v1/";
+          var msg = document.getElementById('message-to-send').value;
+          var accessToken = 'f8197b110b504cde9414ff953ee82d48';
+          
+          $.ajax({
+            type: "POST",
+            url: baseUrl + "query?v=20150910",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            headers: {
+              "Authorization": "Bearer " + accessToken
+            },
+            data: JSON.stringify({ query: msg, lang: "en", sessionId: "somerandomthing" }),
+            success: function(data) {
+                        // setResponse(JSON.stringify(data, undefined, 2));
+                        // readResponse(JSON.stringify(data, undefined, 2));
+                        console.log(data.result.fulfillment.messages[0].speech);
+                        if (data.result.fulfillment.messages[0].speech) {
+                          resultMsg = data.result.fulfillment.messages[0].speech;
+                          chat.addMessage();
+                        } else {
+                          resultMsg = 'Sorry Sir! Please Repeat!';
+                          chat.addMessage();
+                        }
+                        
+            },
+            error: function() {
+              setResponse("Internal Server Error");
+              resultMsg = 'Sorry Sir! Please Repeat!';
+              this.addMessage();
+            }
+          });
+          
+          
         }
     },
     scrollToBottom: function() {
