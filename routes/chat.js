@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', ensureAuthenticated, function(req, res, next) {
-  res.render('home.hbs', { title: 'Members' });
+  res.render('index.hbs', { title: 'Members' });
 });
 
 function ensureAuthenticated (req, res, next) {

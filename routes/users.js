@@ -24,7 +24,7 @@ router.post('/login',
   passport.authenticate('local', {failureRedirect: '/users/login', failureFlash: 'Invalid Username or password' }),
   function(req, res) {
     req.flash('success', 'You are now logged in');
-    res.redirect('/');
+    res.redirect('/chat');
 });
 
 passport.serializeUser(function(user, done) {
@@ -96,15 +96,17 @@ router.post('/register', upload.single('profileimage'), function(req, res, next)
 
     User.createUser(newUser, (err, user) => {
       if (err) {
-        throw err;
+        // throw err;
+        res.location('/chat');
+    res.redirect('/chat');
       }
       console.log(user);
     });
 
     // req.flash('success', 'You are now registered and can login');
 
-    res.location('/');
-    res.redirect('/');
+    res.location('/chat');
+    res.redirect('/chat');
   }
 });
 
