@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.send('<h1>Welcome To MedBot!</h1>');
+  res.render('medbot.html');
 });
 
 module.exports = router;

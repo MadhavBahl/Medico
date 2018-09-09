@@ -1,4 +1,6 @@
 (function(){
+
+  console.log('Welcome!');
   
   var chat = {
     messageToSend: '',
