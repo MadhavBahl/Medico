@@ -18,6 +18,7 @@ var db = mongoose.connection;
 
 var indexRouter  = require('./routes/index');
 var chatRouter   = require('./routes/chat');
+var chatStatic   = require('./routes/chatStatic');
 var medbotRouter = require('./routes/medbot');
 var imageRouter  = require('./routes/image');
 var usersRouter  = require('./routes/users');
@@ -82,6 +83,7 @@ app.use('/users', usersRouter);
 app.use('/chat', chatRouter);
 app.use('/medbot', medbotRouter);
 app.use('/image', imageRouter);
+app.use('/chatStatic', chatStatic);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
